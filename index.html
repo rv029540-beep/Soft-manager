@@ -152,7 +152,34 @@ placeholder="Narration"></textarea>
 
 </div>
 
+<script><input type="text" id="searchBox" placeholder="Search anything...">
+
 <script>
+document.getElementById("searchBox").addEventListener("keyup", function () {
+
+    let filter = this.value.toLowerCase();
+
+    let rows = document.querySelectorAll("table tbody tr");
+
+    rows.forEach(function(row) {
+
+        // poori row ka text lega
+        let rowText = row.innerText.toLowerCase();
+
+        // custom keywords
+        if (filter.includes("material receive")) {
+            filter = "receive";
+        }
+
+        if (rowText.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
+});
+</script>
 
 // Product Data
 
