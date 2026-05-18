@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,12 +98,14 @@ textarea{
 <input
 type="text"
 id="search"
-placeholder="Search Material"
+placeholder="Search Product / Issue / Receive / Ledger"
 onkeyup="searchProduct()">
 
 <br><br>
 
 <!-- Excel Upload -->
+
+<label><b>Upload Excel File:</b></label>
 
 <input
 type="file"
@@ -152,34 +153,7 @@ placeholder="Narration"></textarea>
 
 </div>
 
-<script><input type="text" id="searchBox" placeholder="Search anything...">
-
 <script>
-document.getElementById("searchBox").addEventListener("keyup", function () {
-
-    let filter = this.value.toLowerCase();
-
-    let rows = document.querySelectorAll("table tbody tr");
-
-    rows.forEach(function(row) {
-
-        // poori row ka text lega
-        let rowText = row.innerText.toLowerCase();
-
-        // custom keywords
-        if (filter.includes("material receive")) {
-            filter = "receive";
-        }
-
-        if (rowText.includes(filter)) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
-
-    });
-});
-</script>
 
 // Product Data
 
@@ -211,64 +185,56 @@ document.getElementById("excelFile")
         let sheet =
         workbook.Sheets[workbook.SheetNames[0]];
 
-        // Excel Data
+        let excelData =
+        XLSX.utils.sheet_to_json(sheet,{
+            range:0
+        });
 
-let excelData =
-XLSX.utils.sheet_to_json(sheet,{
-    range:0
-});
+        products = excelData.map(row => ({
 
-// Create Products
+            Product:
+            row.product
+            ||
+            row.Product
+            ||
+            row.Particulars
+            ||
+            "",
 
-products = excelData.map(row => ({
+            Price:
+            Number(row.Price) || 0,
 
-    Product:
-    row.product
-    ||
-    row.Particulars
-    ||
-    "",
-
-    Price: 0,
-
-    Quantity:
-    Number(
-    row.stock
-    ||
-    row.Quantity
-    ) || 0,
-
-    History:[
-
-        {
-            type:"Received",
-
-            qty:
+            Quantity:
             Number(
             row.stock
+            ||
+            row.Stock
             ||
             row.Quantity
             ) || 0,
 
-            narration:"Opening Stock",
+            History:[
 
-            date:new Date().toLocaleString()
-        }
+                {
+                    type:"Received",
 
-    ]
+                    qty:
+                    Number(
+                    row.stock
+                    ||
+                    row.Stock
+                    ||
+                    row.Quantity
+                    ) || 0,
 
-}));
+                    narration:"Opening Stock",
 
-// Save Data
+                    date:new Date().toLocaleString()
+                }
 
-localStorage.setItem(
-"products",
-JSON.stringify(products)
-);
+            ]
 
-// Refresh Table
-
-displayProducts();
+        }));
 
         localStorage.setItem(
         "products",
@@ -304,8 +270,6 @@ function displayProducts(){
 
             <td>${item.Quantity}</td>
 
-            <!-- Issue Qty -->
-
             <td>
 
                 <input
@@ -314,8 +278,6 @@ function displayProducts(){
                 placeholder="Qty">
 
             </td>
-
-            <!-- Issue -->
 
             <td>
 
@@ -328,8 +290,6 @@ function displayProducts(){
 
             </td>
 
-            <!-- Receive Qty -->
-
             <td>
 
                 <input
@@ -338,8 +298,6 @@ function displayProducts(){
                 placeholder="Qty">
 
             </td>
-
-            <!-- Receive -->
 
             <td>
 
@@ -351,8 +309,6 @@ function displayProducts(){
                 </button>
 
             </td>
-
-            <!-- Ledger -->
 
             <td>
 
@@ -401,13 +357,9 @@ function issueStock(index){
         return;
     }
 
-    // Reduce Stock
-
     products[index].Quantity =
     Number(products[index].Quantity)
     - issueQty;
-
-    // History
 
     if(!products[index].History){
 
@@ -459,13 +411,9 @@ function receiveStock(index){
         return;
     }
 
-    // Add Stock
-
     products[index].Quantity =
     Number(products[index].Quantity)
     + receiveQty;
-
-    // History
 
     if(!products[index].History){
 
@@ -549,6 +497,14 @@ function showHistory(index){
         text-align:center;
     }
 
+    button{
+        padding:5px 10px;
+        background:red;
+        color:white;
+        border:none;
+        cursor:pointer;
+    }
+
     </style>
 
     </head>
@@ -571,7 +527,7 @@ function showHistory(index){
 
     `;
 
-    history.forEach(item => {
+    history.forEach((item,historyIndex) => {
 
         html += `
 
@@ -588,7 +544,7 @@ function showHistory(index){
             <td>
 
             <button
-            onclick="window.opener.deleteEntry(${index},${history.indexOf(item)})">
+            onclick="window.opener.deleteEntry(${index},${historyIndex})">
 
             Delete
 
@@ -623,8 +579,6 @@ function deleteEntry(productIndex,historyIndex){
     products[productIndex]
     .History[historyIndex];
 
-    // Reverse Stock
-
     if(item.type === "Issue"){
 
         products[productIndex]
@@ -637,8 +591,6 @@ function deleteEntry(productIndex,historyIndex){
         products[productIndex]
         .Quantity -= item.qty;
     }
-
-    // Delete History
 
     products[productIndex]
     .History
@@ -772,28 +724,43 @@ function monthlyReport(){
 }
 
 
-// Search Product
+// Search Product + Buttons
 
 function searchProduct(){
 
     let input =
-    document.getElementById(
-    "search"
-    ).value.toLowerCase();
+    document.getElementById("search")
+    .value
+    .toLowerCase()
+    .trim();
 
     let rows =
-    document.querySelectorAll(
-    "#tbody tr"
-    );
+    document.querySelectorAll("#tbody tr");
 
     rows.forEach(row => {
 
-        let product =
-        row.children[0]
-        .innerText
-        .toLowerCase();
+        let rowText =
+        row.innerText.toLowerCase();
 
-        if(product.includes(input)){
+        let searchText = input;
+
+        if(
+            input.includes("material receive")
+            ||
+            input.includes("receive")
+        ){
+            searchText = "receive";
+        }
+
+        if(input.includes("ledger")){
+            searchText = "ledger";
+        }
+
+        if(input.includes("issue")){
+            searchText = "issue";
+        }
+
+        if(rowText.includes(searchText)){
 
             row.style.display = "";
 
@@ -803,11 +770,10 @@ function searchProduct(){
         }
 
     });
+
 }
 
 </script>
 
 </body>
 </html>
-
-
