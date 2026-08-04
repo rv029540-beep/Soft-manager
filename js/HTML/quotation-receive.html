@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quotation Receive</title>
+    <link rel="stylesheet" href="../css/Inventory.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body>
+    <div class="top-strip">
+        <div class="search">
+            <input id="searchBox" type="text" placeholder="Menu Search">
+            <ul id="searchResults" class="search-dropdown"></ul>
+        </div>
+    </div>
+    <div class="inventory-page">
+        <header class="voucher-header">
+            <div>
+                <div class="breadcrumb-title">Quotation Receive</div>
+                <div class="breadcrumb-path">Inventory Transactions / Purchases / Quotation Receive</div>
+            </div>
+            <div class="voucher-actions">
+                <button id="newQuoteBtn" class="toolbar-btn" title="New Quotation"><i class="fa-solid fa-plus"></i></button>
+                <button id="refreshQuoteBtn" class="toolbar-btn" title="Refresh"><i class="fa-solid fa-arrows-rotate"></i></button>
+                <button id="linkToPOBtn" class="toolbar-btn" title="Create PO from Quote" onclick="window.location.href='purchase-order-creation.html'"><i class="fa-solid fa-cart-shopping"></i> Create PO</button>
+                <button id="openWorkflowFromQuote" class="toolbar-btn" title="Open Purchase Workflow" onclick="window.location.href='purchase-workflow.html'">Open Workflow</button>
+                <button id="openRFQListFromQuote" class="toolbar-btn" title="Back to RFQ list" onclick="window.location.href='request-for-quotation.html'">RFQ List</button>
+            </div>
+        </header>
+
+        <section class="voucher-table-card">
+            <div class="voucher-table-wrapper">
+                <table class="voucher-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Quotation No.</th>
+                            <th>Date</th>
+                            <th>Supplier</th>
+                            <th>Linked RFQ</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="quoteTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script src="../js/autoVoucher.js"></script>
+    <script src="../js/searchText.js"></script>
+    <script src="../js/quotation-receive.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item Master</title>
+    <link rel="stylesheet" href="../css/item-master/item-master.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body>
+    <div class="top-strip">
+        <div class="search">
+            <input id="searchBox" type="text" placeholder="Menu Search">
+            <ul id="searchResults" class="search-dropdown"></ul>
+        </div>
+    </div>
+    <div class="item-master-page">
+        <aside class="item-master-sidebar">
+            <div class="item-master-header">
+                <div class="breadcrumb-title">Masters / Item / Item</div>
+                <div class="breadcrumb-subtitle">Select an item to view details</div>
+            </div>
+            <div class="item-master-search">
+                <input id="itemSearch" type="search" placeholder="Search items by name or code" />
+            </div>
+            <div class="item-list-summary" id="itemCount"></div>
+            <ul class="item-master-list" id="itemList"></ul>
+        </aside>
+        <main class="item-master-detail">
+            <div class="item-detail-card">
+                <div class="item-detail-header">
+                    <div>
+                        <h1 id="itemDetailTitle">Select an item</h1>
+                        <p id="itemDetailSubtitle">Click an item from the list to view details.</p>
+                    </div>
+                    <div>
+                        <button id="toggleEditBtn" class="action-btn" disabled><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                    </div>
+                </div>
+                <div class="item-detail-view" id="itemDetailView">
+                    <div class="item-field"><span class="label">MasterId</span><span id="detailMasterId">—</span></div>
+                    <div class="item-field"><span class="label">Name</span><span id="detailName">—</span></div>
+                    <div class="item-field"><span class="label">Code</span><span id="detailCode">—</span></div>
+                    <div class="item-field"><span class="label">Balance</span><span id="detailBalance">—</span></div>
+                    <div class="item-field"><span class="label">Item Type</span><span id="detailType">—</span></div>
+                    <div class="item-field"><span class="label">Category</span><span id="detailCategory">—</span></div>
+                    <div class="item-field"><span class="label">Brand</span><span id="detailBrand">—</span></div>
+                    <div class="item-field"><span class="label">Valuation</span><span id="detailValuation">—</span></div>
+                    <div class="item-field full-width"><span class="label">Description</span><span id="detailDescription">—</span></div>
+                </div>
+                <form class="item-detail-form hidden" id="itemEditForm">
+                    <div class="form-row">
+                        <label for="editName">Name</label>
+                        <input id="editName" type="text" />
+                    </div>
+                    <div class="form-row">
+                        <label for="editCode">Code</label>
+                        <input id="editCode" type="text" />
+                    </div>
+                    <div class="form-row">
+                        <label for="editBalance">Balance</label>
+                        <input id="editBalance" type="text" />
+                    </div>
+                    <div class="form-row">
+                        <label for="editType">Item Type</label>
+                        <input id="editType" type="text" />
+                    </div>
+                    <div class="form-row">
+                        <label for="editCategory">Category</label>
+                        <input id="editCategory" type="text" />
+                    </div>
+                    <div class="form-row">
+                        <label for="editBrand">Brand</label>
+                        <input id="editBrand" type="text" />
+                    </div>
+                    <div class="form-row">
+                        <label for="editValuation">Valuation</label>
+                        <input id="editValuation" type="text" />
+                    </div>
+                    <div class="form-row full-width">
+                        <label for="editDescription">Description</label>
+                        <textarea id="editDescription" rows="4"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button id="saveItemBtn" type="button" class="page-btn">Save changes</button>
+                        <button id="cancelEditBtn" type="button" class="page-btn page-btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="../js/searchText.js"></script>
+    <script src="../js/item-master/item-master.js"></script>
+</body>
+</html>

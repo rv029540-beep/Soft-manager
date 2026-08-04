@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase Order Creation</title>
+    <link rel="stylesheet" href="../css/Inventory.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body>
+    <div class="top-strip">
+        <div class="search">
+            <input id="searchBox" type="text" placeholder="Menu Search">
+            <ul id="searchResults" class="search-dropdown"></ul>
+        </div>
+    </div>
+    <div class="inventory-page">
+        <header class="voucher-header">
+            <div>
+                <div class="breadcrumb-title">Purchase Order Creation</div>
+                <div class="breadcrumb-path">Create or link a PO to a purchase workflow</div>
+            </div>
+            <div class="voucher-actions">
+                <button id="saveOrderBtn" class="toolbar-btn" title="Save PO"><i class="fa-solid fa-floppy-disk"></i></button>
+                <button id="viewOrdersBtn" class="toolbar-btn" title="View Orders" onclick="window.location.href='purchase-order-list.html'"><i class="fa-solid fa-list"></i></button>
+                <button id="backWorkflowBtn" class="toolbar-btn" title="Back to Workflow" onclick="window.location.href='purchase-workflow.html'"><i class="fa-solid fa-arrow-left"></i></button>
+                <button id="openRFQFromPOCreate" class="toolbar-btn" title="Open RFQ" onclick="window.location.href='request-for-quotation.html'">RFQ List</button>
+            </div>
+        </header>
+
+        <section class="voucher-form-card">
+            <div class="voucher-grid">
+                <div class="field-group">
+                    <label for="orderId">Order ID</label>
+                    <input id="orderId" type="text" readonly />
+                </div>
+                <div class="field-group">
+                    <label for="workflowSelect">Linked Workflow</label>
+                    <select id="workflowSelect"></select>
+                </div>
+                <div class="field-group">
+                    <label for="poNo">PO No.</label>
+                    <input id="poNo" type="text" placeholder="Enter PO number" />
+                </div>
+                <div class="field-group">
+                    <label for="poDate">PO Date</label>
+                    <input id="poDate" type="date" />
+                </div>
+                <div class="field-group">
+                    <label for="supplier">Supplier</label>
+                    <input id="supplier" type="text" placeholder="Enter supplier name" />
+                </div>
+                <div class="field-group">
+                    <label for="totalAmount">Total Amount</label>
+                    <input id="totalAmount" type="number" min="0" step="0.01" placeholder="0.00" />
+                </div>
+                <div class="field-group">
+                    <label for="poStatus">PO Status</label>
+                    <select id="poStatus">
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Partially Received">Partially Received</option>
+                    </select>
+                </div>
+                <div class="field-group full-width">
+                    <label for="orderNotes">Notes</label>
+                    <textarea id="orderNotes" rows="3" placeholder="Enter any notes"></textarea>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="../js/autoVoucher.js"></script>
+    <script src="../js/searchText.js"></script>
+    <script src="../js/purchase-order.js"></script>
+</body>
+</html>

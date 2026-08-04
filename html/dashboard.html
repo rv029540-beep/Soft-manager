@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<title>Dashboard</title>
+</head>
+<body>
+         <div class="top-strip">
+        <div class="search">
+            <input id="searchBox" type="text" placeholder="Menu Search">
+            <ul id="searchResults" class="search-dropdown">
+                
+            </ul>
+        </div>
+        <div class="top-buttons">
+            <button class="top-btn" title="Notifications">
+                <i class="fa-solid fa-bell"></i>
+            </button>
+            <button class="top-btn" title="Messages">
+                <i class="fa-solid fa-envelope"></i>
+            </button>
+            <button class="top-btn" title="Settings">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <button class="top-btn" title="Help">
+                <i class="fa-solid fa-circle-question"></i>
+            </button>
+            <button class="top-btn" title="Profile">
+                <i class="fa-solid fa-user-circle"></i>
+            </button>
+            <button class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+               <b>Log-out</b>
+            </button>
+        </div>
+    </div>
+    <main class="dashboard-container">
+        <h2>Quick Actions</h2>
+        <div class="dashboard-grid">
+            <a class="dash-tile" href="request-for-quotation.html">
+                <div class="tile-icon"><i class="fa-solid fa-file-lines"></i></div>
+                <div class="tile-title">Request For Quotation</div>
+                <div class="tile-sub">Open RFQ list</div>
+            </a>
+            <a class="dash-tile" href="quotation-receive.html">
+                <div class="tile-icon"><i class="fa-solid fa-receipt"></i></div>
+                <div class="tile-title">Quotation Receive</div>
+                <div class="tile-sub">View received quotations</div>
+            </a>
+            <a class="dash-tile" href="purchase-order-list.html">
+                <div class="tile-icon"><i class="fa-solid fa-list"></i></div>
+                <div class="tile-title">Purchase Orders</div>
+                <div class="tile-sub">View all purchase orders</div>
+            </a>
+            <a class="dash-tile" href="purchase-order-creation.html">
+                <div class="tile-icon"><i class="fa-solid fa-cart-plus"></i></div>
+                <div class="tile-title">Create Purchase Order</div>
+                <div class="tile-sub">Create new PO</div>
+            </a>
+            <a class="dash-tile" href="voucher-create.html">
+                <div class="tile-icon"><i class="fa-solid fa-book"></i></div>
+                <div class="tile-title">Material Requisition</div>
+                <div class="tile-sub">Create or edit vouchers</div>
+            </a>
+            <a class="dash-tile" href="inventory.html">
+                <div class="tile-icon"><i class="fa-solid fa-warehouse"></i></div>
+                <div class="tile-title">Inventory</div>
+                <div class="tile-sub">Open inventory list</div>
+            </a>
+            <a class="dash-tile" href="material-authorize.html">
+                <div class="tile-icon"><i class="fa-solid fa-user-check"></i></div>
+                <div class="tile-title">Material Authorize</div>
+                <div class="tile-sub">Authorize material requests</div>
+            </a>
+            <a class="dash-tile" href="purchase-workflow.html">
+                <div class="tile-icon"><i class="fa-solid fa-flow-chart"></i></div>
+                <div class="tile-title">Purchase Workflow</div>
+                <div class="tile-sub">Open workflows and create PO</div>
+            </a>
+            <a class="dash-tile" href="#" onclick="if(confirm('Delete all saved vouchers and related data?')) window.clearAllSavedVouchers(); return false;" style="border:1px solid #f2dede; background:#fff6f6;">
+                <div class="tile-icon" style="color:#c9302c;background:#fdecea"><i class="fa-solid fa-trash"></i></div>
+                <div class="tile-title">Clear All Vouchers</div>
+                <div class="tile-sub">Delete saved vouchers, RFQs, quotations, workflows and POs</div>
+            </a>
+        </div>
+    </main>
+    <script src="../js/clearVouchers.js"></script>
+    <script src="../js/searchText.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

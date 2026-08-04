@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #eef2f7 0%, #d9dee7 100%);
+    color: #2e3a47;
+}
+
+.inventory-page {
+    max-width: 1400px;
+    margin: 24px auto;
+    padding: 0 18px 32px;
+}
+
+.voucher-header,
+.voucher-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.breadcrumb-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.breadcrumb-path {
+    color: #63718d;
+    font-size: 14px;
+}
+
+.voucher-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.toolbar-btn,
+.page-btn,
+.action-btn,
+.nav-link,
+.top-btn {
+    border: none;
+    background: #ffffff;
+    color: #374151;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.22s ease;
+}
+
+.toolbar-btn:hover,
+.page-btn:hover,
+.action-btn:hover,
+.nav-link:hover,
+.top-btn:hover {
+    background: #eff5ff;
+    color: #2d7df5;
+}
+
+.voucher-form-card,
+.voucher-table-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 12px 24px rgba(31, 60, 94, 0.06);
+    margin-bottom: 18px;
+}
+
+.voucher-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.field-group label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+}
+
+.field-group input,
+.field-group select,
+.field-group textarea {
+    border: 1px solid #d8dee5;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #2e3a47;
+    background: #f8fbff;
+}
+
+.field-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.voucher-table-wrapper {
+    overflow-x: auto;
+}
+
+.voucher-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.voucher-table th,
+.voucher-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #edf1f7;
+    text-align: left;
+    font-size: 14px;
+    color: #3a4b67;
+}
+
+.voucher-table th {
+    background: #f8fbff;
+    color: #2d7df5;
+    font-weight: 700;
+}
+
+.voucher-table tbody tr:hover {
+    background: #f5f8ff;
+}
+
+@media (max-width: 980px) {
+    .voucher-grid {
+        grid-template-columns: 1fr;
+    }
+}

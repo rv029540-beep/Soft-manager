@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Requisition</title>
+    <link rel="stylesheet" href="../css/Inventory.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body>
+    <div class="top-strip">
+        <div class="search">
+            <input id="searchBox" type="text" placeholder="Menu Search">
+            <ul id="searchResults" class="search-dropdown"></ul>
+        </div>
+    </div>
+    <div class="inventory-page">
+        <header class="voucher-header">
+            <div>
+                <div class="breadcrumb-title">Material Requisition (Internal)</div>
+                <div class="breadcrumb-path">Document No. / Create Voucher</div>
+            </div>
+            <div class="voucher-actions">
+                <button id="newVoucherBtn" class="toolbar-btn" title="New"><i class="fa-regular fa-file"></i></button>
+                <button id="saveVoucherBtn" class="toolbar-btn" title="Save"><i class="fa-solid fa-floppy-disk"></i></button>
+                <button id="addItemBtn" class="toolbar-btn" title="Add item"><i class="fa-solid fa-plus"></i></button>
+                <button id="deleteItemBtn" class="toolbar-btn" title="Delete item"><i class="fa-solid fa-trash"></i></button>
+                <button id="previousVoucherBtn" class="toolbar-btn" title="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="nextVoucherBtn" class="toolbar-btn" title="Next"><i class="fa-solid fa-chevron-right"></i></button>
+                <button id="printVoucherBtn" class="toolbar-btn" title="Print"><i class="fa-solid fa-print"></i></button>
+                <button id="emailVoucherBtn" class="toolbar-btn" title="Email"><i class="fa-solid fa-envelope"></i></button>
+                <button id="holdVoucherBtn" class="toolbar-btn" title="Hold"><i class="fa-solid fa-pause"></i></button>
+                <button id="approveVoucherBtn" class="toolbar-btn" title="Approve"><i class="fa-solid fa-circle-check"></i></button>
+                <button id="moreVoucherBtn" class="toolbar-btn" title="More"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+        </header>
+
+        <section class="voucher-form-card">
+            <div class="voucher-grid">
+                <div class="field-group">
+                    <label for="docNo">Document No.</label>
+                    <input id="docNo" type="text" value="MRIU/26-27/00690" readonly />
+                </div>
+                <div class="field-group">
+                    <label for="voucherDate">Date</label>
+                    <input id="voucherDate" type="date" value="2026-07-13" />
+                </div>
+                <div class="field-group">
+                    <label for="warehouse">Warehouse</label>
+                    <select id="warehouse">
+                        <option>Umbrella</option>
+                        <option>Main Warehouse</option>
+                        <option>Central Store</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="department">Department</label>
+                    <select id="department">
+                        <option>MEP</option>
+                        <option>Civil</option>
+                        <option>Housekeeping</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="location">Location</label>
+                    <select id="location">
+                        <option>Umbrella Facility Management Services Pvt Ltd</option>
+                        <option>Site A</option>
+                        <option>Site B</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="requestedBy">Requested By</label>
+                    <input id="requestedBy" type="text" placeholder="Enter name" />
+                </div>
+            </div>
+
+            <div class="field-group full-width">
+                <label for="narration">Narration</label>
+                <textarea id="narration" rows="4" placeholder="Enter description..."></textarea>
+            </div>
+
+            <div class="voucher-grid">
+                <div class="field-group">
+                    <label for="requestedBlock">Requested Block</label>
+                    <select id="requestedBlock"><option>Select block</option></select>
+                </div>
+                <div class="field-group">
+                    <label for="receivingBlock">Receiving Block</label>
+                    <select id="receivingBlock"><option>Select block</option></select>
+                </div>
+                <div class="field-group">
+                    <label for="toDepartment">To Department</label>
+                    <select id="toDepartment"><option>Select department</option></select>
+                </div>
+                <div class="field-group full-width">
+                    <label for="requestType">Request Type</label>
+                    <select id="requestType">
+                        <option>MEP Items</option>
+                        <option>Civil Items</option>
+                        <option>Stationery</option>
+                        <option>Housekeeping</option>
+                        <option>Security</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="voucher-table-card">
+            <div class="voucher-table-wrapper">
+                <table class="voucher-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Brand</th>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Units</th>
+                            <th>Quantity</th>
+                            <th>Stock In Hand</th>
+                        </tr>
+                    </thead>
+                    <tbody id="voucherItemsBody">
+                        <tr>
+                            <td>1</td>
+                            <td><input type="text" value="Extra power" /></td>
+                            <td><input type="text" value="Steel Cutting Blade 4\"" /></td>
+                            <td><input type="text" value="Steel Cutting Blade 4\"" /></td>
+                            <td><input type="text" value="PCS" /></td>
+                            <td><input type="number" value="3" min="0" step="0.01" /></td>
+                            <td><input type="number" value="10.00" min="0" step="0.01" readonly /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="voucher-footer">
+                <div class="voucher-total">Net: ₹ 0.000</div>
+            </div>
+        </section>
+    </div>
+    <script src="../js/searchText.js"></script>
+    <script src="../js/autoVoucher.js"></script>
+    <script src="../js/voucher-create.js"></script>
+</body>
+</html>
